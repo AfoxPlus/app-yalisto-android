@@ -21,7 +21,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run lint
-        run: ./gradlew module:lintDebug
+        run: ./gradlew app:lintDebug
 
       - name: Upload html test report
         uses: actions/upload-artifact@v2
@@ -44,7 +44,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run tests
-        run: ./gradlew module:testDebug
+        run: ./gradlew app:testDebug
 
       - name: Upload test report
         uses: actions/upload-artifact@v2
@@ -67,7 +67,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run Jacoco Test Report
-        run: ./gradlew module:jacocoTestReport
+        run: ./gradlew app:jacocoTestReport
 
       - name: Upload coverage test report
         uses: actions/upload-artifact@v2
@@ -76,7 +76,7 @@ jobs:
           path: module/build/reports/jacoco/jacocoTestReport/
 
       - name: Run Jacoco Test Coverage Verification
-        run: ./gradlew module:jacocoTestCoverageVerification
+        run: ./gradlew app:jacocoTestCoverageVerification
 
   sonarqube:
     name: Analysis Code
@@ -98,7 +98,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: SonarCloud Scan
-        run: ./gradlew module:sonarqube -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=${{ secrets.SONARCLOUDTOKEN }}
+        run: ./gradlew app:sonarqube -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=${{ secrets.SONARCLOUDTOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
