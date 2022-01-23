@@ -1,34 +1,25 @@
 package com.afoxplus.yalisto.delivery.views.activities
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.afoxplus.home.delivery.flow.HomeFlow
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
-    private val handler: Handler = Handler(Looper.getMainLooper())
-    private lateinit var runnable: Runnable
+    @Inject
+    lateinit var homeFlow: HomeFlow
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-
-        runnable = Runnable {
-            if (!isFinishing) {
-                MainActivity.newStartActivity(this)
-                finish()
-            }
+        lifecycleScope.launchWhenCreated {
+            delay(1500)
+            homeFlow.goToHome(this@SplashActivity)
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        handler.postDelayed(runnable, 1500)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        handler.removeCallbacks(runnable)
-    }
-
 }
