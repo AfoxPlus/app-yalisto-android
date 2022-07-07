@@ -36,11 +36,11 @@ android {
     signingConfigs {
         create("release") {
             keyAlias = findProperty("SIGNING_KEY_ALIAS_YALISTO") as String?
-                ?: System.getenv("SIGNING_KEY_ALIAS_YALISTO")
-            keyPassword = findProperty("SIGNING_KEY_PASSWORD") as String?
+                ?: System.getenv("SIGNING_KEY_ALIAS")
+            keyPassword = findProperty("SIGNING_KEY_PASSWORD_YALISTO") as String?
                 ?: System.getenv("SIGNING_KEY_PASSWORD")
             storeFile = file("../.signing/release-yalisto-key.jks")
-            storePassword = findProperty("SIGNING_STORE_PASSWORD") as String?
+            storePassword = findProperty("SIGNING_STORE_PASSWORD_YALISTO") as String?
                 ?: System.getenv("SIGNING_STORE_PASSWORD")
         }
     }
