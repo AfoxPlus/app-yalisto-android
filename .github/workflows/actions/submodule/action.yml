@@ -1,10 +1,10 @@
-name: "Submodule Actions"
+name: "Submodule"
 description: "Run command to initialize submodule"
 runs:
   using: "composite"
   steps:
-    - run: git submodule init
-      shell: bash
-
-    - run: git submodule update
+    - name: Submodule
+      run: |
+        git submodule init
+        git submodule update
       shell: bash

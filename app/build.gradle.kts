@@ -6,8 +6,10 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-apply(from = "sonarqube.gradle")
-apply(from = "jacoco.gradle")
+apply {
+    from("sonarqube.gradle")
+    from("jacoco.gradle")
+}
 
 android {
     compileSdk = Versions.compileSdkVersion
@@ -18,8 +20,29 @@ android {
         minSdk = Versions.minSdkVersion
         targetSdk = Versions.targetSdkVersion
         versionCode = ConfigureApp.versionCode
-        versionName = ConfigureApp.version
+        versionName = ConfigureApp.versionName
         testInstrumentationRunner = Versions.testInstrumentationRunner
+        renderscriptSupportModeEnabled = true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            keyAlias = findProperty("SIGNING_KEY_ALIAS_YALISTO") as String?
+                ?: System.getenv("SIGNING_KEY_ALIAS_YALISTO")
+            keyPassword = findProperty("SIGNING_KEY_PASSWORD") as String?
+                ?: System.getenv("SIGNING_KEY_PASSWORD")
+            storeFile = file("../.signing/release-yalisto-key.jks")
+            storePassword = findProperty("SIGNING_STORE_PASSWORD") as String?
+                ?: System.getenv("SIGNING_STORE_PASSWORD")
+        }
     }
 
     buildTypes {
@@ -27,22 +50,22 @@ android {
             isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "EXAMPLE_FIELD", "\"example-release\"")
         }
-
         getByName("debug") {
             isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "EXAMPLE_FIELD", "\"example-debug\"")
         }
     }
 
@@ -58,8 +81,32 @@ android {
         dataBinding = true
     }
 
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+
     lint {
-        isCheckDependencies = true
+        disable.addAll(
+            listOf(
+                "TypographyFractions",
+                "TypographyQuotes",
+                "JvmStaticProvidesInObjectDetector",
+                "FieldSiteTargetOnQualifierAnnotation",
+                "ModuleCompanionObjects",
+                "ModuleCompanionObjectsNotInModuleParent"
+            )
+        )
+        checkDependencies = true
+        abortOnError = false
+        ignoreWarnings = false
     }
 }
 

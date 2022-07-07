@@ -1,0 +1,128 @@
+name: Android Publish
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    env:
+      REPO_USERID: ${{ secrets.REPO_USERID }}
+      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Configure Step
+        uses: ./.github/workflows/actions/configure
+
+      - name: Run Lint
+        uses: ./.github/workflows/actions/lint
+
+      - name: Upload Lint Test Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint_report
+          path: app/build/reports/lint-results-debug.html
+
+      - name: Upload Detekt Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: detekt_report
+          path: app/build/reports/detekt
+
+  code-analysis:
+    name: Code Analysis
+    needs: [ lint ]
+    runs-on: ubuntu-latest
+    env:
+      REPO_USERID: ${{ secrets.REPO_USERID }}
+      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Configure Step
+        uses: ./.github/workflows/actions/configure
+
+      - name: Run Lint
+        uses: ./.github/workflows/actions/lint
+
+      - name: Run Tests
+        run: ./gradlew app:testDebugUnitTest
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit_test_report
+          path: app/build/reports/tests/testDebugUnitTest/
+
+      - name: Run Jacoco Test Report
+        run: ./gradlew app:jacocoTestReport
+
+      - name: Upload Coverage Test Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco_test_report
+          path: app/build/reports/jacoco/jacocoTestReport/
+
+      - name: Run Jacoco Test Coverage Verification
+        run: ./gradlew app:jacocoTestCoverageVerification
+
+      - name: Run SonarQube Scan
+        run: ./gradlew app:sonarqube -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=${{ secrets.SONARCLOUDTOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    name: Publish
+    needs: [ code-analysis ]
+    runs-on: ubuntu-latest
+    env:
+      REPO_USERID: ${{ secrets.REPO_USERID }}
+      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+      SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+      SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+      SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Configure Step
+        uses: ./.github/workflows/actions/configure
+
+      - name: Signing App Release
+        run: |
+          ./gradlew app:bundleRelease
+          ./gradlew app:assembleRelease
+
+      - name: Upload Artifact APK Release
+        uses: actions/upload-artifact@v2
+        with:
+          name: apk-release
+          path: ./app/build/outputs/apk/release
+
+      - name: Upload Artifact Bundle Release
+        uses: actions/upload-artifact@v2
+        with:
+          name: apk-bundle-release
+          path: ./app/build/outputs/bundle/release
+
+      - name: Create Tag Release
+        run: |
+          currentVersion=`grep versionName ./buildSrc/src/main/kotlin/ConfigureApp.kt | awk -F" " '{ print $5 }' `
+          currentFormattedVersion=`echo $currentVersion | sed 's/.\(.*\)/\1/' | sed 's/\(.*\)./\1/'`
+          echo "Version: $currentFormattedVersion"
+          git tag $currentFormattedVersion
+          git push origin --tags
+
+      - name: Deploy to Alpha
+        uses: r0adkll/upload-google-play@v1.0.17
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SIGNING_SERVICE_ACCOUNT }}
+          packageName: com.afoxplus.yalisto
+          releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
+          track: alpha
