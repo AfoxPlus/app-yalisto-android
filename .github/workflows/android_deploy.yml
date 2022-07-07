@@ -20,19 +20,13 @@ jobs:
         uses: ./.github/workflows/actions/configure
 
       - name: Run Lint
-        uses: ./.github/workflows/actions/lint
+        run: ./gradlew app:lintDebug
 
       - name: Upload Lint Test Report
         uses: actions/upload-artifact@v2
         with:
           name: lint_report
           path: app/build/reports/lint-results-debug.html
-
-      - name: Upload Detekt Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: detekt_report
-          path: app/build/reports/detekt
 
   code-analysis:
     name: Code Analysis
@@ -49,7 +43,7 @@ jobs:
         uses: ./.github/workflows/actions/configure
 
       - name: Run Lint
-        uses: ./.github/workflows/actions/lint
+        run: ./gradlew app:lintDebug
 
       - name: Run Tests
         run: ./gradlew app:testDebugUnitTest
