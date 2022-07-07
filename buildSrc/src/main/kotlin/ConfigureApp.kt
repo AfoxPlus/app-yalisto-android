@@ -4,5 +4,5 @@ object ConfigureApp {
     const val projectName = "app-yalisto-android"
     const val applicationId = "com.afoxplus.yalisto"
     const val versionCode = 1
-    const val version = "1.0.0"
+    const val versionName = "1.0.0"
 }
