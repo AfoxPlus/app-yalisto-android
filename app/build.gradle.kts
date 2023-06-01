@@ -1,9 +1,11 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
-    id("dagger.hilt.android.plugin")
+    id("com.android.application") version "7.3.1"
+    id("org.jetbrains.kotlin.android") version "1.7.20"
+    id("org.jetbrains.kotlin.kapt") version "1.7.20"
+    id("com.google.dagger.hilt.android") version "2.44.2"
+    id("org.jetbrains.kotlin.plugin.parcelize") version "1.7.20"
+    id("org.sonarqube") version "3.3"
+    id("jacoco")
 }
 
 apply {
@@ -12,15 +14,14 @@ apply {
 }
 
 android {
+    namespace = ConfigureApp.applicationId
     compileSdk = Versions.compileSdkVersion
-    buildToolsVersion = Versions.buildToolsVersion
 
     defaultConfig {
-        applicationId = ConfigureApp.applicationId
         minSdk = Versions.minSdkVersion
         targetSdk = Versions.targetSdkVersion
         versionCode = ConfigureApp.versionCode
-        versionName = ConfigureApp.versionName
+        versionName = ConfigureApp.version
         testInstrumentationRunner = Versions.testInstrumentationRunner
         renderscriptSupportModeEnabled = true
         vectorDrawables.useSupportLibrary = true
@@ -48,14 +49,24 @@ android {
     buildTypes {
         getByName("release") {
             isDebuggable = false
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+
+        create("staging") {
+            initWith(getByName("debug"))
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+
         getByName("debug") {
             isDebuggable = true
             isMinifyEnabled = false
@@ -104,40 +115,43 @@ android {
                 "ModuleCompanionObjectsNotInModuleParent"
             )
         )
-        checkDependencies = true
-        abortOnError = false
-        ignoreWarnings = false
+         checkDependencies = true
+         abortOnError = false
+         ignoreWarnings = false
+    }
+
+    hilt {
+        enableAggregatingTask = true
     }
 }
 
 dependencies {
     implementation(fileTree("libs") { include(listOf("*.jar", "*.aar")) })
+
     implementation(Deps.Jetpack.core)
-    implementation(Deps.Jetpack.kotlin)
+    implementation(Deps.Jetpack.appcompat)
+
     implementation(Deps.Jetpack.activity)
     implementation(Deps.Jetpack.fragment)
-    implementation(Deps.Jetpack.appcompat)
 
     implementation(Deps.UI.materialDesign)
     implementation(Deps.UI.constraintLayout)
+
     implementation(Deps.UI.glide)
     kapt(Deps.UI.glideCompiler)
-    implementation(Deps.UI.uikit)
 
     implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
     implementation(Deps.Arch.zxingCore)
+
     implementation(Deps.Arch.network)
     implementation(Deps.Arch.retrofit2)
     implementation(Deps.Arch.gson)
     implementation(Deps.Arch.loggingInterceptor)
+
     implementation(Deps.Arch.coroutinesCore)
+
     implementation(Deps.Arch.hiltAndroid)
     kapt(Deps.Arch.hiltCompiler)
-
-    implementation(Deps.Arch.home)
-    implementation(Deps.Arch.products)
-    implementation(Deps.Arch.restaurants)
-    implementation(Deps.Arch.orders)
 
     testImplementation(Deps.Test.jUnit)
     testImplementation(Deps.Test.testCore)
@@ -145,4 +159,13 @@ dependencies {
     testImplementation(Deps.Test.mockitoKotlin)
     androidTestImplementation(Deps.Test.androidJUnit)
     androidTestImplementation(Deps.Test.espresso)
+
+    //Business Dependencies
+    implementation(Deps.UI.uikit)
+    implementation(Deps.Arch.home)
+    implementation(Deps.Arch.products)
+    implementation(Deps.Arch.restaurants)
+    implementation(Deps.Arch.orders)
+
+    //LocalModules.setupBuildGradle(this, rootProject, "yalisto")
 }
