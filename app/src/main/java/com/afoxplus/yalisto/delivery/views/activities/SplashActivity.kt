@@ -14,8 +14,7 @@ class SplashActivity : AppCompatActivity() {
     @Inject
     lateinit var homeFlow: HomeFlow
 
-
-    override fun onCreate(savedInstanceState: Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launchWhenCreated {
             delay(1500)
