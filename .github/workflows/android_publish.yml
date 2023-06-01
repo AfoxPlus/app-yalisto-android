@@ -1,69 +1,28 @@
 name: Android Publish
+run-name: Android Publish execute by @${{ github.actor }}
 
-on: [ workflow_dispatch ]
+on:
+  push:
+    branches:
+      - 'master'
 
-#on:
-#  push:
-#    branches:
-#      - 'master'
+env:
+  REPO_USERID: ${{ secrets.REPO_USERID }}
+  REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    env:
-      REPO_USERID: ${{ secrets.REPO_USERID }}
-      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Configure Step
-        uses: ./.github/workflows/actions/configure
-
-      - name: Run Lint
-        run: ./gradlew app:lintDebug
-
-      - name: Upload Lint Test Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: lint_report
-          path: app/build/reports/lint-results-debug.html
-
-  code-analysis:
+  test:
     name: Code Analysis
-    needs: [ lint ]
     runs-on: ubuntu-latest
-    env:
-      REPO_USERID: ${{ secrets.REPO_USERID }}
-      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Configure Step
-        uses: ./.github/workflows/actions/configure
+      - name: Setup Project
+        uses: ./.github/actions/android
 
       - name: Run Lint
         run: ./gradlew app:lintDebug
-
-      - name: Run Tests
-        run: ./gradlew app:testDebugUnitTest
-
-      - name: Upload Test Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: unit_test_report
-          path: app/build/reports/tests/testDebugUnitTest/
-
-      - name: Run Jacoco Test Report
-        run: ./gradlew app:jacocoTestReport
-
-      - name: Upload Coverage Test Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco_test_report
-          path: app/build/reports/jacoco/jacocoTestReport/
 
       - name: Run Jacoco Test Coverage Verification
         run: ./gradlew app:jacocoTestCoverageVerification
@@ -73,22 +32,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  publish:
-    name: Publish
-    needs: [ code-analysis ]
+  artifact:
+    name: Artifact
     runs-on: ubuntu-latest
-    env:
-      REPO_USERID: ${{ secrets.REPO_USERID }}
-      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-      SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-      SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-      SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Configure Step
-        uses: ./.github/workflows/actions/configure
+      - name: Setup Project
+        uses: ./.github/actions/android
 
       - name: Signing App Release
         run: |
@@ -96,24 +48,16 @@ jobs:
           ./gradlew app:assembleRelease
 
       - name: Upload Artifact APK Release
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: apk-release
           path: ./app/build/outputs/apk/release
 
       - name: Upload Artifact Bundle Release
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: apk-bundle-release
           path: ./app/build/outputs/bundle/release
-
-      - name: Create Tag Release
-        run: |
-          currentVersion=`grep versionName ./buildSrc/src/main/kotlin/ConfigureApp.kt | awk -F" " '{ print $5 }' `
-          currentFormattedVersion=`echo $currentVersion | sed 's/.\(.*\)/\1/' | sed 's/\(.*\)./\1/'`
-          echo "Version: $currentFormattedVersion"
-          git tag $currentFormattedVersion
-          git push origin --tags
 
       - name: Deploy to Alpha
         uses: r0adkll/upload-google-play@v1.0.17
@@ -122,3 +66,21 @@ jobs:
           packageName: com.afoxplus.yalisto
           releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
           track: alpha
+
+  tag:
+    name: Tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Project
+        uses: ./.github/actions/android
+
+      - name: Create Tag Release
+        run: |
+          currentVersion=`grep version ./buildSrc/src/main/kotlin/ConfigureApp.kt | awk -F" " '{ print $5 }' `
+          versionFormatted=`echo $currentVersion | sed 's/.\(.*\)/\1/' | sed 's/\(.*\)./\1/'`
+          echo "Version: $versionFormatted"
+          git tag $versionFormatted
+          git push origin --tags

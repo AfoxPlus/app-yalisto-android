@@ -49,8 +49,8 @@ android {
     buildTypes {
         getByName("release") {
             isDebuggable = false
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -167,5 +167,5 @@ dependencies {
     implementation(Deps.Arch.restaurants)
     implementation(Deps.Arch.orders)
 
-    LocalModules.setupBuildGradle(this, rootProject, "yalisto")
+    //LocalModules.setupBuildGradle(this, rootProject, "yalisto")
 }
