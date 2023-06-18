@@ -6,4 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".delivery.views.activities.SplashActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imgOneContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgOne"
+            android:layout_width="@dimen/borderWidth0"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/splash_img01" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgFoodOne"
+            android:layout_width="@dimen/borderWidth0"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp32"
+            app:layout_constraintBottom_toBottomOf="@+id/imgOne"
+            app:layout_constraintStart_toStartOf="@+id/imgOne"
+            app:layout_constraintTop_toTopOf="@+id/imgOne"
+            app:srcCompat="@drawable/splas_food_01" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imgTwoContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgOneContent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgFoodTwo"
+            android:layout_width="@dimen/borderWidth0"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp68"
+            app:layout_constraintBottom_toBottomOf="@+id/imgTwo"
+            app:layout_constraintEnd_toEndOf="@+id/imgTwo"
+            app:layout_constraintTop_toTopOf="@+id/imgTwo"
+            app:srcCompat="@drawable/splash_food_02" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgTwo"
+            android:layout_width="@dimen/borderWidth0"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/splash_img02" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/borderWidth0"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/splash_icon" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleYa"
+            style="@style/Title01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp22"
+            android:text="Ya"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icLogo" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleListo"
+            style="@style/Title01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp22"
+            android:text="Listo"
+            android:textColor="@color/orange_01"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleYa" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
