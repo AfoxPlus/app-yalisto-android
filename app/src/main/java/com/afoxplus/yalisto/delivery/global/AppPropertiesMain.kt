@@ -5,7 +5,13 @@ import com.afoxplus.yalisto.BuildConfig
 import com.afoxplus.yalisto.repositories.GlobalRepository
 import javax.inject.Inject
 
-class AppPropertiesMain @Inject constructor(private val globalRepository: GlobalRepository) : AppProperties {
+class AppPropertiesMain @Inject constructor(
+    private val globalRepository: GlobalRepository
+) : AppProperties {
+    override fun getCurrencyID(): String {
+        return ""
+    }
+
     override fun getDeviceData(): String {
         var deviceData = ""
         try {
