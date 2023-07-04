@@ -5,6 +5,7 @@ import javax.inject.Inject
 
 interface GlobalRepository {
     fun getUserUUID(): String
+    fun getCurrencyID(): String
 }
 
 class GlobalRepositorySource @Inject constructor(private val preference: GlobalPreference) :
@@ -17,6 +18,11 @@ class GlobalRepositorySource @Inject constructor(private val preference: GlobalP
             preference.writeObjectToFile(localUUID, USER_UUID)
         }
         return localUUID
+    }
+
+    override fun getCurrencyID(): String {
+        //TODO: Consume currency from appInit Splash
+        return "61a18be00b6de1476436de41"
     }
 
     companion object {
