@@ -172,10 +172,5 @@ dependencies {
     implementation(Deps.Arch.restaurants)
     implementation(Deps.Arch.orders)
 
-    // Chucker
-    debugImplementation(Deps.Arch.chucker)
-    "stagingImplementation"(Deps.Arch.chucker)
-    releaseImplementation(Deps.Arch.chuckerNoOp)
-
     //LocalModules.setupBuildGradle(this, rootProject, "yalisto")
 }
