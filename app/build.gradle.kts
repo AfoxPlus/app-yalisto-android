@@ -115,9 +115,9 @@ android {
                 "ModuleCompanionObjectsNotInModuleParent"
             )
         )
-         checkDependencies = true
-         abortOnError = false
-         ignoreWarnings = false
+        checkDependencies = true
+        abortOnError = false
+        ignoreWarnings = false
     }
 
     hilt {
@@ -143,7 +143,6 @@ dependencies {
     implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
     implementation(Deps.Arch.zxingCore)
 
-    implementation(Deps.Arch.network)
     implementation(Deps.Arch.retrofit2)
     implementation(Deps.Arch.gson)
     implementation(Deps.Arch.loggingInterceptor)
@@ -153,6 +152,11 @@ dependencies {
     implementation(Deps.Arch.hiltAndroid)
     kapt(Deps.Arch.hiltCompiler)
 
+    // Chucker
+    debugImplementation(Deps.Arch.chucker)
+    "stagingImplementation"(Deps.Arch.chucker)
+    releaseImplementation(Deps.Arch.chuckerNoOp)
+
     testImplementation(Deps.Test.jUnit)
     testImplementation(Deps.Test.testCore)
     testImplementation(Deps.Test.truth)
@@ -161,6 +165,7 @@ dependencies {
     androidTestImplementation(Deps.Test.espresso)
 
     //Business Dependencies
+    implementation(Deps.Arch.network)
     implementation(Deps.UI.uikit)
     implementation(Deps.Arch.home)
     implementation(Deps.Arch.products)

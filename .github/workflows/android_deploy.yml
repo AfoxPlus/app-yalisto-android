@@ -21,14 +21,14 @@ jobs:
       - name: Setup Project
         uses: ./.github/actions/android
 
-      - name: Run AssembleQa
-        run: ./gradlew app:assembleQa --stacktrace
+      - name: Run AssembleStaging
+        run: ./gradlew app:assembleStaging --stacktrace
 
       - name: Upload Artifact APK
         uses: actions/upload-artifact@v2
         with:
           name: apk-qa
-          path: ./app/build/outputs/apk/qa
+          path: ./app/build/outputs/apk/staging
 
   lint:
     name: Lint
