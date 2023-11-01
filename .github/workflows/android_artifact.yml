@@ -15,6 +15,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+          cache: 'gradle'
+          check-latest: true
+
       - name: Setup Project
         uses: ./.github/actions/android
 
@@ -44,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lint_report
-          path: module/build/reports/lint-results-debug.html
+          path: app/build/reports/lint-results-debug.html
 
   test:
     name: Code Analysis
@@ -63,10 +71,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: unit_test_report
-          path: module/build/reports/tests/testDebugUnitTest/
+          path: app/build/reports/tests/testDebugUnitTest/
 
       - name: Upload Coverage Test Report
         uses: actions/upload-artifact@v3
         with:
           name: jacoco_test_report
-          path: module/build/reports/jacoco/jacocoTestReport/
+          path: app/build/reports/jacoco/jacocoTestReport/

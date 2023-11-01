@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lint_report
-          path: module/build/reports/lint-results-debug.html
+          path: app/build/reports/lint-results-debug.html
 
   test:
     name: Code Analysis
@@ -47,10 +47,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: unit_test_report
-          path: module/build/reports/tests/testDebugUnitTest/
+          path: app/build/reports/tests/testDebugUnitTest/
 
       - name: Upload Coverage Test Report
         uses: actions/upload-artifact@v3
         with:
           name: jacoco_test_report
-          path: module/build/reports/jacoco/jacocoTestReport/
+          path: app/build/reports/jacoco/jacocoTestReport/

@@ -21,7 +21,7 @@ android {
         minSdk = Versions.minSdkVersion
         targetSdk = Versions.targetSdkVersion
         versionCode = ConfigureApp.versionCode
-        versionName = ConfigureApp.version
+        versionName = ConfigureApp.versionName
         testInstrumentationRunner = Versions.testInstrumentationRunner
         renderscriptSupportModeEnabled = true
         vectorDrawables.useSupportLibrary = true
