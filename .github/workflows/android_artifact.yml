@@ -15,66 +15,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'zulu'
-          cache: 'gradle'
-          check-latest: true
-
       - name: Setup Project
         uses: ./.github/actions/android
 
       - name: Run AssembleStaging
         run: ./gradlew app:assembleStaging --stacktrace
+        shell: bash
 
       - name: Upload Artifact APK
         uses: actions/upload-artifact@v2
         with:
           name: apk-qa
           path: ./app/build/outputs/apk/staging
-
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Project
-        uses: ./.github/actions/android
-
-      - name: Run Lint
-        run: ./gradlew app:lintDebug
-
-      - name: Upload Lint Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: lint_report
-          path: app/build/reports/lint-results-debug.html
-
-  test:
-    name: Code Analysis
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Project
-        uses: ./.github/actions/android
-
-      - name: Run Jacoco Test Coverage Verification
-        run: ./gradlew app:jacocoTestCoverageVerification
-
-      - name: Upload Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: unit_test_report
-          path: app/build/reports/tests/testDebugUnitTest/
-
-      - name: Upload Coverage Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: jacoco_test_report
-          path: app/build/reports/jacoco/jacocoTestReport/

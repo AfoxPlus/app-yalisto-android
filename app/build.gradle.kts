@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.application") version "7.3.1"
-    id("org.jetbrains.kotlin.android") version "1.7.20"
-    id("org.jetbrains.kotlin.kapt") version "1.7.20"
+    id("com.android.application") version "8.0.2"
+    id("org.jetbrains.kotlin.android") version "1.8.22"
+    id("org.jetbrains.kotlin.kapt") version "1.8.22"
     id("com.google.dagger.hilt.android") version "2.44.2"
     id("org.jetbrains.kotlin.plugin.parcelize") version "1.7.20"
     id("org.sonarqube") version "3.3"
@@ -11,6 +11,7 @@ plugins {
 apply {
     from("sonarqube.gradle")
     from("jacoco.gradle")
+    from("graph.gradle.kts")
 }
 
 android {
@@ -81,15 +82,21 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions.jvmTarget = "${JavaVersion.VERSION_11}"
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
 
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        compose = true
+        buildConfig = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.8"
     }
 
     bundle {
@@ -127,36 +134,42 @@ android {
 
 dependencies {
     implementation(fileTree("libs") { include(listOf("*.jar", "*.aar")) })
-
+    implementation(Deps.Jetpack.kotlin)
     implementation(Deps.Jetpack.core)
     implementation(Deps.Jetpack.appcompat)
-
-    implementation(Deps.Jetpack.activity)
     implementation(Deps.Jetpack.fragment)
-
     implementation(Deps.UI.materialDesign)
     implementation(Deps.UI.constraintLayout)
 
-    implementation(Deps.UI.glide)
-    kapt(Deps.UI.glideCompiler)
+    // JetpackCompose
+    implementation(Deps.JetpackCompose.activity)
+    implementation(Deps.JetpackCompose.constraintlayout)
+    implementation(Deps.JetpackCompose.navigation)
+    implementation(platform(Deps.JetpackCompose.bom))
+    implementation(Deps.JetpackCompose.ui)
+    implementation(Deps.JetpackCompose.graphics)
+    implementation(Deps.JetpackCompose.toolingPreview)
+    implementation(Deps.JetpackCompose.material3)
+    implementation(Deps.JetpackCompose.materialIconExtended)
 
-    implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
-    implementation(Deps.Arch.zxingCore)
-
+    // External Libraries
+    implementation(Deps.Arch.hiltAndroid)
+    kapt(Deps.Arch.hiltCompiler)
+    implementation(Deps.Arch.coroutinesCore)
     implementation(Deps.Arch.retrofit2)
     implementation(Deps.Arch.gson)
     implementation(Deps.Arch.loggingInterceptor)
-
-    implementation(Deps.Arch.coroutinesCore)
-
-    implementation(Deps.Arch.hiltAndroid)
-    kapt(Deps.Arch.hiltCompiler)
+    implementation(Deps.UI.glide)
+    kapt(Deps.UI.glideCompiler)
+    implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
+    implementation(Deps.Arch.zxingCore)
 
     // Chucker
     debugImplementation(Deps.Arch.chucker)
     "stagingImplementation"(Deps.Arch.chucker)
     releaseImplementation(Deps.Arch.chuckerNoOp)
 
+    // Test
     testImplementation(Deps.Test.jUnit)
     testImplementation(Deps.Test.testCore)
     testImplementation(Deps.Test.truth)
@@ -164,13 +177,11 @@ dependencies {
     androidTestImplementation(Deps.Test.androidJUnit)
     androidTestImplementation(Deps.Test.espresso)
 
-    //Business Dependencies
-    implementation(Deps.Arch.network)
+    // Business Dependencies
     implementation(Deps.UI.uikit)
-    implementation(Deps.Arch.home)
+    implementation(Deps.Arch.network)
     implementation(Deps.Arch.products)
     implementation(Deps.Arch.restaurants)
     implementation(Deps.Arch.orders)
-
-    //LocalModules.setupBuildGradle(this, rootProject, "yalisto")
+    implementation(Deps.Arch.home)
 }
