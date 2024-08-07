@@ -184,4 +184,5 @@ dependencies {
     implementation(Deps.Arch.restaurants)
     implementation(Deps.Arch.orders)
     implementation(Deps.Arch.home)
+    implementation(Deps.Arch.invitations)
 }
