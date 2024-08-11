@@ -3,8 +3,8 @@ object ConfigureApp {
     const val organization = "afoxplus"
     const val projectName = "app-yalisto-android"
     const val applicationId = "com.afoxplus.yalisto"
-    const val versionCode = 4
-    const val versionName = "5.1.0"
+    const val versionCode = 5
+    const val versionName = "6.0.0"
 
     //Only for LocalModules
     const val groupId = "com.afoxplus.android"

@@ -149,8 +149,11 @@ dependencies {
     implementation(Deps.JetpackCompose.ui)
     implementation(Deps.JetpackCompose.graphics)
     implementation(Deps.JetpackCompose.toolingPreview)
+    debugImplementation(Deps.JetpackCompose.tooling)
     implementation(Deps.JetpackCompose.material3)
     implementation(Deps.JetpackCompose.materialIconExtended)
+    implementation(Deps.JetpackCompose.coilCompose)
+    implementation(Deps.JetpackCompose.hiltNavigationCompose)
 
     // External Libraries
     implementation(Deps.Arch.hiltAndroid)
@@ -184,4 +187,5 @@ dependencies {
     implementation(Deps.Arch.restaurants)
     implementation(Deps.Arch.orders)
     implementation(Deps.Arch.home)
+    implementation(Deps.Arch.invitations)
 }
