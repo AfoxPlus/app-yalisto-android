@@ -1,5 +1,10 @@
 # app-afoxplus-android Changelog
 
+## Version 6.0.0
+## Added
+- Feature Invitations
+- Update flow order
+
 ## Version 5.1.0
 ## Added
 - Upgrade Java 11 to Java 17.
