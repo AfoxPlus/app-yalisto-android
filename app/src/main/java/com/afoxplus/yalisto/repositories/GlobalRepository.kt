@@ -21,7 +21,6 @@ class GlobalRepositorySource @Inject constructor(private val preference: GlobalP
     }
 
     override fun getCurrencyID(): String {
-        //TODO: Consume currency from appInit Splash
         return "61a18be00b6de1476436de41"
     }
 
