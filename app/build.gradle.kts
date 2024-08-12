@@ -11,8 +11,8 @@ plugins {
 }
 
 apply {
-    from(Gradle.Sonarqube)
-    from(Gradle.Jacoco)
+    from("sonarqube.gradle")
+    from("jacoco.gradle")
     from("graph.gradle.kts")
 }
 
