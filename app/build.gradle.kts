@@ -134,6 +134,7 @@ android {
 
 dependencies {
     //Jetpack
+    implementation(Deps.Jetpack.kotlin)
     implementation(Deps.Jetpack.core)
     implementation(Deps.Jetpack.appcompat)
     implementation(Deps.Jetpack.fragment)
@@ -163,16 +164,16 @@ dependencies {
     implementation(Deps.Arch.coroutinesAndroid)
 
     //Lifecycle Scope
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    implementation(Deps.Arch.lifecycleRuntime)
     implementation(Deps.Arch.lifecycleViewModel)
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
+    implementation(Deps.Arch.lifecycleCompose)
+    implementation(Deps.Arch.lifecycleRuntimeCompose)
 
     // Dagger - Hilt
     implementation(Deps.Arch.hiltAndroid)
-    kapt(Deps.Arch.hiltCompiler)
+    kapt(Deps.Arch.hiltAndroidCompiler)
     implementation(Deps.JetpackCompose.hiltNavigationCompose)
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
+    kapt(Deps.Arch.hiltCompiler)
 
     //Retrofit
     implementation(Deps.Arch.retrofit2)
