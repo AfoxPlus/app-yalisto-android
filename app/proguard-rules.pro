@@ -5,6 +5,18 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
+# General
+#-printconfiguration proguard-merged-config.txt
+#-dontoptimize #Specifies not to optimize the input class files.
+-dontusemixedcaseclassnames #Specifies not to generate mixed-case class names while obfuscating.
+-dontskipnonpubliclibraryclasses #Specifies not to ignore non-public library classes. As of version 4.5, this is the default setting
+-optimizationpasses 5 #Specifies the number of optimization passes to be performed. By default, a single pass is performed.
+-verbose #Specifies to write out some more information during processing
+-keepattributes SourceFile,LineNumberTable,*Annotation*,EnclosingMethod,Signature,Exceptions,InnerClasses,AnnotationDefault,RuntimeVisibleAnnotations,RuntimeVisibleParameterAnnotations #Specifies any optional attributes to be preserved.
+-keep,allowshrinking class * implements java.io.Serializable {*;} # affects classes that implement serializable
+-keep,allowshrinking class * implements android.os.Parcelable {*;} # affects classes that implement parcelable
+#---------------------------------------------------------
+
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
@@ -20,12 +32,15 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+# Retrofit
 -dontwarn retrofit2.**
 -dontwarn org.junit.**
 -dontwarn okhttp3.**
 -dontwarn dagger.**
 -dontwarn android.test.**
+#---------------------------------------------------------
 
+# Dagger
 -keepclassmembers,allowobfuscation class * {
     @javax.inject.* *;
     @dagger.* *;
@@ -39,13 +54,16 @@
 -keep class * extends dagger.internal.StaticInjection
 
 -keep class com.squareup.okhttp3.** { *; }
+#---------------------------------------------------------
 
--keep class com.afoxplus.orders.repositories.** { <fields>; }
--keep class com.afoxplus.orders.entities.** { <fields>; }
+# Kotlin
+-keepclassmembers,allowoptimization @kotlin.** class com.afoxplus.** {
+    <fields>;
+}
+-keep class kotlin.coroutines.Continuation
+#---------------------------------------------------------
 
--keep class com.afoxplus.products.repositories.** { <fields>; }
--keep class com.afoxplus.products.entities.** { <fields>; }
-
--keep class com.afoxplus.restaurants.repositories.** { <fields>; }
--keep class com.afoxplus.restaurants.entities.** { <fields>; }
+# Compose
+-keep class androidx.compose.** { *; }
+#---------------------------------------------------------
 

@@ -133,15 +133,16 @@ android {
 }
 
 dependencies {
-    implementation(fileTree("libs") { include(listOf("*.jar", "*.aar")) })
-    implementation(Deps.Jetpack.kotlin)
+    //Jetpack
     implementation(Deps.Jetpack.core)
     implementation(Deps.Jetpack.appcompat)
     implementation(Deps.Jetpack.fragment)
+
+    //Jetpack UI
     implementation(Deps.UI.materialDesign)
     implementation(Deps.UI.constraintLayout)
 
-    // JetpackCompose
+    // Jetpack Compose
     implementation(Deps.JetpackCompose.activity)
     implementation(Deps.JetpackCompose.constraintlayout)
     implementation(Deps.JetpackCompose.navigation)
@@ -152,18 +153,33 @@ dependencies {
     debugImplementation(Deps.JetpackCompose.tooling)
     implementation(Deps.JetpackCompose.material3)
     implementation(Deps.JetpackCompose.materialIconExtended)
+    //Image Async
     implementation(Deps.JetpackCompose.coilCompose)
-    implementation(Deps.JetpackCompose.hiltNavigationCompose)
+    implementation(Deps.UI.glide)
+    kapt(Deps.UI.glideCompiler)
 
-    // External Libraries
+    // Coroutines
+    implementation(Deps.Arch.coroutinesCore)
+    implementation(Deps.Arch.coroutinesAndroid)
+
+    //Lifecycle Scope
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    implementation(Deps.Arch.lifecycleViewModel)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
+
+    // Dagger - Hilt
     implementation(Deps.Arch.hiltAndroid)
     kapt(Deps.Arch.hiltCompiler)
-    implementation(Deps.Arch.coroutinesCore)
+    implementation(Deps.JetpackCompose.hiltNavigationCompose)
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
+
+    //Retrofit
     implementation(Deps.Arch.retrofit2)
     implementation(Deps.Arch.gson)
     implementation(Deps.Arch.loggingInterceptor)
-    implementation(Deps.UI.glide)
-    kapt(Deps.UI.glideCompiler)
+
+    //Scan
     implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
     implementation(Deps.Arch.zxingCore)
 
