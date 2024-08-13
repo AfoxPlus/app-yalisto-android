@@ -4,6 +4,8 @@ plugins {
     id("org.jetbrains.kotlin.kapt") version "1.8.22"
     id("com.google.dagger.hilt.android") version "2.44.2"
     id("org.jetbrains.kotlin.plugin.parcelize") version "1.7.20"
+    id("com.google.gms.google-services") version "4.4.2" apply false
+    id("com.google.firebase.crashlytics") version "3.0.2" apply false
     id("org.sonarqube") version "3.3"
     id("jacoco")
 }
@@ -166,6 +168,11 @@ dependencies {
     kapt(Deps.UI.glideCompiler)
     implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
     implementation(Deps.Arch.zxingCore)
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
 
     // Chucker
     debugImplementation(Deps.Arch.chucker)
