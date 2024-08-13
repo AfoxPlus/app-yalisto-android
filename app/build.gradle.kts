@@ -135,15 +135,17 @@ android {
 }
 
 dependencies {
-    implementation(fileTree("libs") { include(listOf("*.jar", "*.aar")) })
+    //Jetpack
     implementation(Deps.Jetpack.kotlin)
     implementation(Deps.Jetpack.core)
     implementation(Deps.Jetpack.appcompat)
     implementation(Deps.Jetpack.fragment)
+
+    //Jetpack UI
     implementation(Deps.UI.materialDesign)
     implementation(Deps.UI.constraintLayout)
 
-    // JetpackCompose
+    // Jetpack Compose
     implementation(Deps.JetpackCompose.activity)
     implementation(Deps.JetpackCompose.constraintlayout)
     implementation(Deps.JetpackCompose.navigation)
@@ -154,25 +156,40 @@ dependencies {
     debugImplementation(Deps.JetpackCompose.tooling)
     implementation(Deps.JetpackCompose.material3)
     implementation(Deps.JetpackCompose.materialIconExtended)
+    //Image Async
     implementation(Deps.JetpackCompose.coilCompose)
-    implementation(Deps.JetpackCompose.hiltNavigationCompose)
+    implementation(Deps.UI.glide)
+    kapt(Deps.UI.glideCompiler)
 
-    // External Libraries
-    implementation(Deps.Arch.hiltAndroid)
-    kapt(Deps.Arch.hiltCompiler)
+    // Coroutines
     implementation(Deps.Arch.coroutinesCore)
+    implementation(Deps.Arch.coroutinesAndroid)
+
+    //Lifecycle Scope
+    implementation(Deps.Arch.lifecycleRuntime)
+    implementation(Deps.Arch.lifecycleViewModel)
+    implementation(Deps.Arch.lifecycleCompose)
+    implementation(Deps.Arch.lifecycleRuntimeCompose)
+
+    // Dagger - Hilt
+    implementation(Deps.Arch.hiltAndroid)
+    kapt(Deps.Arch.hiltAndroidCompiler)
+    implementation(Deps.JetpackCompose.hiltNavigationCompose)
+    kapt(Deps.Arch.hiltCompiler)
+
+    //Retrofit
     implementation(Deps.Arch.retrofit2)
     implementation(Deps.Arch.gson)
     implementation(Deps.Arch.loggingInterceptor)
-    implementation(Deps.UI.glide)
-    kapt(Deps.UI.glideCompiler)
+
+    //Scan
     implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
     implementation(Deps.Arch.zxingCore)
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("com.google.firebase:firebase-crashlytics")
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform(Deps.Arch.firebase))
+    implementation(Deps.Arch.firebaseCrashlytics)
+    implementation(Deps.Arch.firebaseAnalytics)
 
     // Chucker
     debugImplementation(Deps.Arch.chucker)
