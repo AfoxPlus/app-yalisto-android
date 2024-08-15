@@ -36,6 +36,7 @@ buildscript {
     }
 }
 
+rootProject.name = "app-yalisto-android"
 include(":app")
 
 /*
@@ -48,11 +49,13 @@ project(":products").projectDir =
 include("uikit")
 project(":uikit").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-uikit/module")
-include("home")
-project(":home").projectDir =
-    File("${settings.rootProject.projectDir.parent}/app-android-home/module")
 include("orders")
 project(":orders").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-orders/module")
+include("home")
+project(":home").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-home/module")
+include("invitation")
+project(":invitation").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-invitation/module")
 */
-

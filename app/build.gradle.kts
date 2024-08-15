@@ -21,6 +21,7 @@ android {
     compileSdk = Versions.compileSdkVersion
 
     defaultConfig {
+        applicationId = ConfigureApp.applicationId
         minSdk = Versions.minSdkVersion
         targetSdk = Versions.targetSdkVersion
         versionCode = ConfigureApp.versionCode

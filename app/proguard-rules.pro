@@ -62,8 +62,3 @@
 }
 -keep class kotlin.coroutines.Continuation
 #---------------------------------------------------------
-
-# Compose
--keep class androidx.compose.** { *; }
-#---------------------------------------------------------
-
