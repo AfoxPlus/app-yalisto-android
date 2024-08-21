@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">YaListo</string>
+    <string name="notification_permission_dialog_description">Queremos mantenerte informado sobre el estado de tu pedido.</string>
+    <string name="notification_permission_dialog_title">Notificaciones</string>
+    <string name="notification_permission_dialog_button">Configurar</string>
 </resources>

@@ -2,11 +2,14 @@ package com.afoxplus.yalisto.delivery.global
 
 import com.afoxplus.network.global.AppProperties
 import com.afoxplus.yalisto.BuildConfig
-import com.afoxplus.yalisto.repositories.GlobalRepository
+import com.afoxplus.yalisto.domain.repositories.AuthRepository
+import com.afoxplus.yalisto.domain.repositories.GlobalRepository
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class AppPropertiesMain @Inject constructor(
-    private val globalRepository: GlobalRepository
+    private val globalRepository: GlobalRepository,
+    private val authRepository: AuthRepository
 ) : AppProperties {
     override fun getCurrencyID(): String = globalRepository.getCurrencyID()
 
@@ -28,7 +31,13 @@ class AppPropertiesMain @Inject constructor(
         return deviceData
     }
 
-    override fun getUserUUID(): String = globalRepository.getUserUUID()
+    override fun getUserUUID(): String {
+        var uuid: String
+        runBlocking {
+            uuid = authRepository.getUserAuth().uuid
+        }
+        return uuid
+    }
 
     override fun isAppDebug(): Boolean {
         return BuildConfig.DEBUG

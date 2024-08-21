@@ -191,6 +191,11 @@ dependencies {
     implementation(platform(Deps.Arch.firebase))
     implementation(Deps.Arch.firebaseCrashlytics)
     implementation(Deps.Arch.firebaseAnalytics)
+    implementation("com.google.firebase:firebase-messaging-ktx")
+
+    //DataStore
+    implementation(Deps.Arch.dataStore)
+    implementation(Deps.Arch.dataStoreCore)
 
     // Chucker
     debugImplementation(Deps.Arch.chucker)
