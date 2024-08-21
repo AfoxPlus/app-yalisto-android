@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
@@ -13,12 +12,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.afoxplus.home.delivery.flow.HomeFlow
 import com.afoxplus.yalisto.databinding.ActivitySplashBinding
 import com.afoxplus.yalisto.delivery.onboarding.OnboardingActivity
-import com.google.firebase.Firebase
-import com.google.firebase.messaging.messaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -55,10 +51,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun gotoHome() {
         homeFlow.goToHome(this)
-        lifecycleScope.launch {
-            val token = Firebase.messaging.token.await()
-            Log.d("LOG_VALE", "Firebase token:$token")
-        }
         finish()
     }
 
