@@ -1,11 +1,11 @@
 plugins {
-    id("com.android.application") version "8.0.2"
+    id("com.android.application") version "8.1.4"
     id("org.jetbrains.kotlin.android") version "1.8.22"
     id("org.jetbrains.kotlin.kapt") version "1.8.22"
-    id("com.google.dagger.hilt.android") version "2.44.2"
     id("org.jetbrains.kotlin.plugin.parcelize") version "1.7.20"
-    id("com.google.gms.google-services") version "4.4.2" apply false
-    id("com.google.firebase.crashlytics") version "3.0.2" apply false
+    id("com.google.dagger.hilt.android") version "2.44.2"
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     id("org.sonarqube") version "3.3"
     id("jacoco")
 }
@@ -191,7 +191,7 @@ dependencies {
     implementation(platform(Deps.Arch.firebase))
     implementation(Deps.Arch.firebaseCrashlytics)
     implementation(Deps.Arch.firebaseAnalytics)
-
+    implementation("com.google.firebase:firebase-messaging-ktx")
     // Chucker
     debugImplementation(Deps.Arch.chucker)
     "stagingImplementation"(Deps.Arch.chucker)
