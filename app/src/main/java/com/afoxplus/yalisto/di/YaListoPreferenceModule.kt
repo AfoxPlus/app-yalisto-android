@@ -5,7 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.afoxplus.yalisto.cross.constants.ConstantsDI.DI_PREFERENCES_NAME
+import com.afoxplus.yalisto.cross.constants.GlobalConstants.PREFERENCES_NAME_ID
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ class YaListoPreferenceModule {
     @Singleton
     fun providesPreferences(@ApplicationContext context: Context): DataStore<Preferences> {
         return PreferenceDataStoreFactory.create {
-            context.preferencesDataStoreFile(DI_PREFERENCES_NAME)
+            context.preferencesDataStoreFile(PREFERENCES_NAME_ID)
         }
     }
 }
