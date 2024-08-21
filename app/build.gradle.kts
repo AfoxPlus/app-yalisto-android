@@ -1,11 +1,11 @@
 plugins {
-    id("com.android.application") version "8.0.2"
-    id("org.jetbrains.kotlin.android") version "1.8.22"
-    id("org.jetbrains.kotlin.kapt") version "1.8.22"
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
+    id("org.jetbrains.kotlin.plugin.parcelize")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     id("com.google.dagger.hilt.android") version "2.44.2"
-    id("org.jetbrains.kotlin.plugin.parcelize") version "1.7.20"
-    id("com.google.gms.google-services") version "4.4.2" apply false
-    id("com.google.firebase.crashlytics") version "3.0.2" apply false
     id("org.sonarqube") version "3.3"
     id("jacoco")
 }
