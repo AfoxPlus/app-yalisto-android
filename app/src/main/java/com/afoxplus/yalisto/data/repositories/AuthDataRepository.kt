@@ -1,6 +1,5 @@
 package com.afoxplus.yalisto.data.repositories
 
-import android.util.Log
 import com.afoxplus.yalisto.data.sources.local.preferences.UserAuthPreferenceDataSource
 import com.afoxplus.yalisto.domain.entities.UserAuth
 import com.afoxplus.yalisto.domain.repositories.AuthRepository

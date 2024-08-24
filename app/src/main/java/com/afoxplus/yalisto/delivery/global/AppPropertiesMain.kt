@@ -31,6 +31,14 @@ class AppPropertiesMain @Inject constructor(
         return deviceData
     }
 
+    override fun getUserAuthFCMToken(): String {
+        var userFCMToken: String
+        runBlocking {
+            userFCMToken = authRepository.getUserAuth().fcmToken
+        }
+        return userFCMToken
+    }
+
     override fun getUserUUID(): String {
         var uuid: String
         runBlocking {
