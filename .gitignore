@@ -1,5 +1,6 @@
 *.gradle
 *.idea
+*.signing
 *.iml
 .DS_Store
 .externalNativeBuild

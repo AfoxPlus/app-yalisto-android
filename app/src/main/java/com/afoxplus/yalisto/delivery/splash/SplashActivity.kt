@@ -54,7 +54,7 @@ class SplashActivity : AppCompatActivity() {
             ) {
                 gotoHome()
             } else {
-                OnboardingActivity.newStartActivity(this@SplashActivity)
+                gotoOnboarding()
             }
         } else gotoHome()
         splashViewModel.showNotificationPermission()
@@ -62,6 +62,11 @@ class SplashActivity : AppCompatActivity() {
 
     private fun gotoHome() {
         homeFlow.goToHome(this)
+        finish()
+    }
+
+    private fun gotoOnboarding() {
+        OnboardingActivity.newStartActivity(this)
         finish()
     }
 
