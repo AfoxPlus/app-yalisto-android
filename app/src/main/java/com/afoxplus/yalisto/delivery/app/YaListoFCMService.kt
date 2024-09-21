@@ -32,6 +32,7 @@ class YaListoFCMService : FirebaseMessagingService() {
             .setSmallIcon(R.drawable.icon_notification_scan)
             .setContentText(message.notification?.title)
             .setContentText(message.notification?.body)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .build()
         notificationManager.notify(1, notification)
     }
