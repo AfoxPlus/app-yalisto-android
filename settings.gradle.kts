@@ -40,22 +40,7 @@ rootProject.name = "app-yalisto-android"
 include(":app")
 
 /*
-include("restaurants")
-project(":restaurants").projectDir =
-    File("${settings.rootProject.projectDir.parent}/app-android-restaurants/module")
-include("products")
-project(":products").projectDir =
-    File("${settings.rootProject.projectDir.parent}/app-android-products/module")
-include("uikit")
-project(":uikit").projectDir =
-    File("${settings.rootProject.projectDir.parent}/app-android-uikit/module")
-include("orders")
-project(":orders").projectDir =
-    File("${settings.rootProject.projectDir.parent}/app-android-orders/module")
 include("home")
 project(":home").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-home/module")
-include("invitation")
-project(":invitation").projectDir =
-    File("${settings.rootProject.projectDir.parent}/app-android-invitation/module")
 */

@@ -15,9 +15,7 @@ allprojects {
         resolutionStrategy {
             dependencySubstitution {
                 substitute(module(Deps.Arch.home)).using(project(":home"))
-                substitute(module(Deps.Arch.invitations)).using(project(":invitation"))
             }
         }
     }
-}
-*/
+}*/
