@@ -49,10 +49,6 @@
 
 -keep class dagger.* { *; }
 -keep class javax.inject.* { *; }
--keep class * extends dagger.internal.Binding
--keep class * extends dagger.internal.ModuleAdapter
--keep class * extends dagger.internal.StaticInjection
-
 -keep class com.squareup.okhttp3.** { *; }
 #---------------------------------------------------------
 
@@ -62,3 +58,10 @@
 }
 -keep class kotlin.coroutines.Continuation
 #---------------------------------------------------------
+
+
+# Compose
+-keep class androidx.compose.** { *; }
+-keep class androidx.compose.foundation.lazy.** { *; }
+#---------------------------------------------------------
+

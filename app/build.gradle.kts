@@ -99,7 +99,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
+        kotlinCompilerExtensionVersion = Versions.kotlinCompilerExtensionVersion
     }
 
     bundle {
