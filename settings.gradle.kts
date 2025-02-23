@@ -40,7 +40,36 @@ rootProject.name = "app-yalisto-android"
 include(":app")
 
 /*
+include("uikit")
+project(":uikit").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-uikit/module")
+
+include("network")
+project(":network").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-network/module")
+
+include("products")
+project(":products").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-products/module")
+
+include("restaurants")
+project(":restaurants").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-restaurants/module")
+
+include("orders")
+project(":orders").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-orders/module")
+
 include("home")
 project(":home").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-home/module")
-*/
+
+include("places")
+project(":places").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-places/module")
+
+include("bdui")
+project(":bdui").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-bdui/module")
+
+ */
