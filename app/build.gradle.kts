@@ -1,11 +1,12 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("org.jetbrains.kotlin.plugin.parcelize")
-    id("com.google.dagger.hilt.android")
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.plugin.parcelize)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.jlleitschuh.gradle.ktlint)
+    alias(libs.plugins.gms.google.services)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.devtools.ksp)
     id("org.sonarqube") version "3.3"
     id("jacoco")
 }
@@ -18,15 +19,15 @@ apply {
 
 android {
     namespace = ConfigureApp.applicationId
-    compileSdk = Versions.compileSdkVersion
+    compileSdk = ConfigureApp.Versions.compileSdkVersion
 
     defaultConfig {
         applicationId = ConfigureApp.applicationId
-        minSdk = Versions.minSdkVersion
-        targetSdk = Versions.targetSdkVersion
+        minSdk = ConfigureApp.Versions.minSdkVersion
+        targetSdk = ConfigureApp.Versions.targetSdkVersion
         versionCode = ConfigureApp.versionCode
         versionName = ConfigureApp.versionName
-        testInstrumentationRunner = Versions.testInstrumentationRunner
+        testInstrumentationRunner = ConfigureApp.Versions.testInstrumentationRunner
         renderscriptSupportModeEnabled = true
         vectorDrawables.useSupportLibrary = true
     }
@@ -137,52 +138,50 @@ android {
 
 dependencies {
     //Jetpack
-    implementation(Deps.Jetpack.kotlin)
-    implementation(Deps.Jetpack.core)
-    implementation(Deps.Jetpack.appcompat)
-    implementation(Deps.Jetpack.fragment)
-    implementation(Deps.Jetpack.kotlinReflect)
-
-    //Jetpack UI
-    implementation(Deps.UI.materialDesign)
-    implementation(Deps.UI.constraintLayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
 
     // Jetpack Compose
-    implementation(Deps.JetpackCompose.activity)
-    implementation(Deps.JetpackCompose.constraintlayout)
-    implementation(Deps.JetpackCompose.navigation)
-    implementation(platform(Deps.JetpackCompose.bom))
-    implementation(Deps.JetpackCompose.ui)
-    implementation(Deps.JetpackCompose.graphics)
-    implementation(Deps.JetpackCompose.toolingPreview)
-    debugImplementation(Deps.JetpackCompose.tooling)
-    implementation(Deps.JetpackCompose.material3)
-    implementation(Deps.JetpackCompose.materialIconExtended)
+    // Compose
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    debugImplementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.material.icons.extended)
     //Image Async
-    implementation(Deps.JetpackCompose.coilCompose)
-    implementation(Deps.UI.glide)
-    kapt(Deps.UI.glideCompiler)
+    implementation(libs.coil.compose)
+    implementation(libs.glide)
+    ksp(libs.glide.compiler)
 
     // Coroutines
-    implementation(Deps.Arch.coroutinesCore)
-    implementation(Deps.Arch.coroutinesAndroid)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
-    //Lifecycle Scope
-    implementation(Deps.Arch.lifecycleRuntime)
-    implementation(Deps.Arch.lifecycleViewModel)
-    implementation(Deps.Arch.lifecycleCompose)
-    implementation(Deps.Arch.lifecycleRuntimeCompose)
+    // Lifecycle Scopes
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     // Dagger - Hilt
-    implementation(Deps.Arch.hiltAndroid)
-    kapt(Deps.Arch.hiltAndroidCompiler)
-    implementation(Deps.JetpackCompose.hiltNavigationCompose)
-    kapt(Deps.Arch.hiltCompiler)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.androidx.hilt.compiler)
 
-    //Retrofit
-    implementation(Deps.Arch.retrofit2)
-    implementation(Deps.Arch.gson)
-    implementation(Deps.Arch.loggingInterceptor)
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     //Map
     implementation(Deps.Arch.map)
@@ -194,10 +193,10 @@ dependencies {
     implementation(Deps.Arch.zxingCore)
 
     // Firebase
-    implementation(platform(Deps.Arch.firebase))
-    implementation(Deps.Arch.firebaseCrashlytics)
-    implementation(Deps.Arch.firebaseAnalytics)
-    implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.messaging.ktx)
 
     //DataStore
     implementation(Deps.Arch.dataStore)

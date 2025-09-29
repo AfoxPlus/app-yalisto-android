@@ -39,7 +39,7 @@ buildscript {
 rootProject.name = "app-yalisto-android"
 include(":app")
 
-
+/*
 include("uikit")
 project(":uikit").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-uikit/module")
@@ -71,4 +71,4 @@ project(":places").projectDir =
 include("bdui")
 project(":bdui").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-bdui/module")
-
+*/

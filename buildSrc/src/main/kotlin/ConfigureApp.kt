@@ -9,4 +9,11 @@ object ConfigureApp {
     //Only for LocalModules
     const val groupId = "com.afoxplus.android"
     const val artifactId = "yalisto"
+
+    object Versions {
+        const val compileSdkVersion = 35
+        const val minSdkVersion = 24
+        const val targetSdkVersion = 35
+        const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 }

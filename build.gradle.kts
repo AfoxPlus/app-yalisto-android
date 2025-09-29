@@ -1,15 +1,16 @@
 plugins {
-    id("com.android.application") version Versions.androidApplicationVersion apply false
-    id("com.android.library") version Versions.androidLibraryVersion apply false
-    id("org.jetbrains.kotlin.android") version Versions.kotlinVersion apply false
-    id("com.google.dagger.hilt.android") version Versions.hiltVersion apply false
-    id("org.jetbrains.kotlin.kapt") version Versions.kotlinVersion apply false
-    id("org.jetbrains.kotlin.plugin.parcelize") version Versions.kotlinVersion apply false
-    id("com.google.gms.google-services") version "4.4.2" apply false
-    id("com.google.firebase.crashlytics") version "3.0.2" apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.jetbrains.kotlin.plugin.parcelize) apply false
+    alias(libs.plugins.dagger.hilt.android) apply false
+    alias(libs.plugins.gms.google.services) apply false
+    alias(libs.plugins.jlleitschuh.gradle.ktlint) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
+    alias(libs.plugins.devtools.ksp) apply false
 }
 
-
+/*
 allprojects {
     configurations.all {
         resolutionStrategy {
@@ -26,3 +27,4 @@ allprojects {
         }
     }
 }
+*/
