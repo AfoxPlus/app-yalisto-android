@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.devtools.ksp) apply false
 }
 
-/*
+
 allprojects {
     configurations.all {
         resolutionStrategy {
@@ -27,4 +27,3 @@ allprojects {
         }
     }
 }
-*/

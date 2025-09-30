@@ -12,8 +12,8 @@ plugins {
 }
 
 apply {
-    from("sonarqube.gradle")
-    from("jacoco.gradle")
+    from(Gradle.Sonarqube)
+    from(Gradle.Jacoco)
     from("graph.gradle.kts")
 }
 
@@ -142,11 +142,11 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.kotlin.reflect)
+    //Jetpack UI
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
 
     // Jetpack Compose
-    // Compose
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.constraintlayout.compose)
     implementation(platform(libs.androidx.compose.bom))
