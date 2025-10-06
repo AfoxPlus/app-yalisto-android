@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.jlleitschuh.gradle.ktlint)
     alias(libs.plugins.gms.google.services)
     alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.devtools.ksp)
     id("org.sonarqube") version "3.3"
     id("jacoco")
@@ -97,10 +98,6 @@ android {
         dataBinding = true
         compose = true
         buildConfig = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.kotlinCompilerExtensionVersion
     }
 
     bundle {
@@ -216,12 +213,12 @@ dependencies {
     androidTestImplementation(Deps.Test.espresso)
 
     // Business Dependencies
-    implementation(Deps.UI.uikit)
-    implementation(Deps.Arch.network)
-    implementation(Deps.Arch.products)
-    implementation(Deps.Arch.restaurants)
-    implementation(Deps.Arch.orders)
-    implementation(Deps.Arch.home)
-    implementation(Deps.Arch.places)
-    implementation(Deps.Arch.bdui)
+    implementation(project(":uikit"))
+    implementation(project(":network"))
+    implementation(project(":products"))
+    implementation(project(":restaurants"))
+    implementation(project(":orders"))
+    implementation(project(":home"))
+    implementation(project(":places"))
+    implementation(project(":bdui"))
 }

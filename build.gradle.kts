@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.jetbrains.kotlin.plugin.parcelize) apply false
     alias(libs.plugins.dagger.hilt.android) apply false
@@ -8,9 +9,10 @@ plugins {
     alias(libs.plugins.jlleitschuh.gradle.ktlint) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.devtools.ksp) apply false
+    alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 }
 
-
+/*
 allprojects {
     configurations.all {
         resolutionStrategy {
@@ -26,4 +28,4 @@ allprojects {
             }
         }
     }
-}
+}*/
