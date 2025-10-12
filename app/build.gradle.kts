@@ -144,18 +144,10 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     // Jetpack Compose
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.constraintlayout.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    debugImplementation(libs.androidx.ui.tooling)
-    implementation(libs.androidx.material.icons.extended)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.androidx.compose)
+
     //Image Async
-    implementation(libs.coil.compose)
     implementation(libs.glide)
     ksp(libs.glide.compiler)
 
@@ -181,13 +173,13 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     //Map
-    implementation(Deps.Arch.map)
-    implementation(Deps.Arch.mapCompose)
-    implementation(Deps.Arch.mapLocation)
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
+    implementation(libs.maps.compose)
 
     //Scan
-    implementation(Deps.Arch.zxingAndroid) { isTransitive = false }
-    implementation(Deps.Arch.zxingCore)
+    implementation(libs.zxing.android.embedded) { isTransitive = false}
+    implementation(libs.zxing.core)
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -196,29 +188,29 @@ dependencies {
     implementation(libs.firebase.messaging.ktx)
 
     //DataStore
-    implementation(Deps.Arch.dataStore)
-    implementation(Deps.Arch.dataStoreCore)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences.core)
 
     // Chucker
-    debugImplementation(Deps.Arch.chucker)
-    "stagingImplementation"(Deps.Arch.chucker)
-    releaseImplementation(Deps.Arch.chuckerNoOp)
+    debugImplementation(libs.chucker.library)
+    "stagingImplementation"(libs.chucker.library)
+    releaseImplementation(libs.chucker.library.no.op)
 
     // Test
-    testImplementation(Deps.Test.jUnit)
-    testImplementation(Deps.Test.testCore)
-    testImplementation(Deps.Test.truth)
-    testImplementation(Deps.Test.mockitoKotlin)
-    androidTestImplementation(Deps.Test.androidJUnit)
-    androidTestImplementation(Deps.Test.espresso)
+    testImplementation(libs.bundles.unit.test)
 
     // Business Dependencies
-    implementation(project(":uikit"))
-    implementation(project(":network"))
-    implementation(project(":products"))
-    implementation(project(":restaurants"))
-    implementation(project(":orders"))
-    implementation(project(":home"))
-    implementation(project(":places"))
-    implementation(project(":bdui"))
+    implementation(project(ModuleDependency.Core.DESIGN_SYSTEM))
+    implementation(project(ModuleDependency.Integration.NETWORK))
+    implementation(project(ModuleDependency.Integration.BDUI))
+    implementation(project(ModuleDependency.Feature.PRODUCTS))
+    implementation(project(ModuleDependency.Feature.RESTAURANTS))
+    implementation(project(ModuleDependency.Feature.ORDERS))
+    implementation(project(ModuleDependency.Feature.HOME))
+    implementation(project(ModuleDependency.Feature.PLACES))
+
+    //Compose Debug
+    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.compose.ui.tooling.preview)
+
 }
