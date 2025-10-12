@@ -154,7 +154,8 @@ androidx-compose = [
     "compose-constraintlayout",
     "compose-navigation",
     "compose-material-icons-extended",
-    "compose-coil"
+    "compose-coil",
+    "compose-ui-tooling-preview"
 ]
 
 unit-test = [

@@ -91,8 +91,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
-
     buildFeatures {
         viewBinding = true
         dataBinding = true
@@ -200,14 +198,14 @@ dependencies {
     testImplementation(libs.bundles.unit.test)
 
     // Business Dependencies
-    implementation(project(ModuleDependency.Core.DESIGN_SYSTEM))
-    implementation(project(ModuleDependency.Integration.NETWORK))
-    implementation(project(ModuleDependency.Integration.BDUI))
-    implementation(project(ModuleDependency.Feature.PRODUCTS))
-    implementation(project(ModuleDependency.Feature.RESTAURANTS))
-    implementation(project(ModuleDependency.Feature.ORDERS))
-    implementation(project(ModuleDependency.Feature.HOME))
-    implementation(project(ModuleDependency.Feature.PLACES))
+    implementation(project(":uikit"))
+    implementation(project(":network"))
+    implementation(project(":products"))
+    implementation(project(":restaurants"))
+    implementation(project(":orders"))
+    implementation(project(":home"))
+    implementation(project(":places"))
+    implementation(project(":bdui"))
 
     //Compose Debug
     debugImplementation(libs.compose.ui.tooling)
