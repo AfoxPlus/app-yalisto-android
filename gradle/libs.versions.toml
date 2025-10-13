@@ -37,8 +37,14 @@ devtoolsKsp = "2.2.0-2.0.2"
 jetbrainsKotlinJvm = "2.2.0"
 
 #Modules
-yalistoUIkit = "6.2.2"
-yalistoNetwork = "6.2.1"
+yalistoUIkit = "6.4.0"
+yalistoNetwork = "6.3.0"
+yalistoBdui = "1.0.3"
+yalistoPlaces = "1.0.1"
+yalistoProducts = "6.2.4"
+yalistoHome = "6.3.8"
+yalistoRestaurants = "6.4.0"
+yalistoOrders = "6.2.5"
 
 #Tests
 mockitoCore = "5.20.0"
@@ -130,6 +136,12 @@ mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito
 
 yalisto-uikit = { module = "com.afoxplus.android:uikit", version.ref = "yalistoUIkit" }
 yalisto-network = { module = "com.afoxplus.android:network", version.ref = "yalistoNetwork" }
+yalisto-products = { module = "com.afoxplus.android:products", version.ref = "yalistoProducts" }
+yalisto-bdui = { module = "com.afoxplus.android:bdui", version.ref = "yalistoBdui" }
+yalisto-places = { module = "com.afoxplus.android:places", version.ref = "yalistoPlaces" }
+yalisto-home = { module = "com.afoxplus.android:home", version.ref = "yalistoHome" }
+yalisto-restaurants = { module = "com.afoxplus.android:restaurants", version.ref = "yalistoRestaurants" }
+yalisto-orders = { module = "com.afoxplus.android:orders", version.ref = "yalistoOrders" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

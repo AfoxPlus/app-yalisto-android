@@ -12,20 +12,28 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 }
 
-/*
+val catalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 allprojects {
     configurations.all {
         resolutionStrategy {
             dependencySubstitution {
-                substitute(module(Deps.UI.uikit)).using(project(":uikit"))
-                substitute(module(Deps.Arch.network)).using(project(":network"))
-                substitute(module(Deps.Arch.products)).using(project(":products"))
-                substitute(module(Deps.Arch.restaurants)).using(project(":restaurants"))
-                substitute(module(Deps.Arch.orders)).using(project(":orders"))
-                substitute(module(Deps.Arch.home)).using(project(":home"))
-                substitute(module(Deps.Arch.places)).using(project(":places"))
-                substitute(module(Deps.Arch.bdui)).using(project(":bdui"))
+                substitute(module(catalog.findLibrary("yalisto.uikit").get().get().toString()))
+                    .using(project(ModuleDependency.Core.DESIGN_SYSTEM))
+                substitute(module(catalog.findLibrary("yalisto.network").get().get().toString()))
+                    .using(project(ModuleDependency.Integration.NETWORK))
+                substitute(module(catalog.findLibrary("yalisto.products").get().get().toString()))
+                    .using(project(ModuleDependency.Feature.PRODUCTS))
+                substitute(module(catalog.findLibrary("yalisto.restaurants").get().get().toString()))
+                    .using(project(ModuleDependency.Feature.RESTAURANTS))
+                substitute(module(catalog.findLibrary("yalisto.orders").get().get().toString()))
+                    .using(project(ModuleDependency.Feature.ORDERS))
+                substitute(module(catalog.findLibrary("yalisto.home").get().get().toString()))
+                    .using(project(ModuleDependency.Feature.HOME))
+                substitute(module(catalog.findLibrary("yalisto.places").get().get().toString()))
+                    .using(project(ModuleDependency.Feature.PLACES))
+                substitute(module(catalog.findLibrary("yalisto.bdui").get().get().toString()))
+                    .using(project(ModuleDependency.Integration.BDUI))
             }
         }
     }
-}*/
+}
