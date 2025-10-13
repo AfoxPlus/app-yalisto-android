@@ -16,5 +16,6 @@ object ConfigureApp {
         const val targetSdkVersion = 36
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         const val kotlinCompilerExtensionVersion = "1.5.3"
+        const val jdkVersion = 17
     }
 }

@@ -91,6 +91,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    kotlin { jvmToolchain(ConfigureApp.Versions.jdkVersion) }
+
     buildFeatures {
         viewBinding = true
         dataBinding = true
