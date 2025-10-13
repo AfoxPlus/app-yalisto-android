@@ -18,4 +18,13 @@ object ConfigureApp {
         const val kotlinCompilerExtensionVersion = "1.5.3"
         const val jdkVersion = 17
     }
+
+    object Gradle {
+        const val sonarqube =
+            "https://drive.google.com/uc?export=download&id=1JTrnI8AoVkIgc1_uESGLSfQt5Oi9_Pjs"
+        const val jacoco =
+            "https://drive.google.com/uc?export=download&id=1IFjDqr-JL6xK8bVbrzKC1zRwUdCJdSui"
+        const val uploadArtifact =
+            "https://drive.google.com/uc?export=download&id=1n319i6WX86UF9v80aj0Mi0BEZttExR4m"
+    }
 }
