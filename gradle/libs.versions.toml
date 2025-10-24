@@ -1,0 +1,182 @@
+[versions]
+agp = "8.13.0"
+appcompat = "1.7.1"
+coilCompose = "2.7.0"
+constraintlayout = "2.2.1"
+constraintlayoutCompose = "1.1.1"
+zxing = "3.5.3"
+zxingAndroidEmbedded = "4.3.0"
+coreSplashscreen = "1.0.1"
+datastore = "1.1.7"
+firebaseBom = "33.3.0"
+fragmentKtx = "1.8.9"
+glide = "5.0.5"
+hiltCompiler = "1.3.0"
+kotlin = "2.2.0"
+coreKtx = "1.17.0"
+kotlinxCoroutinesAndroid = "1.10.2"
+kotlinxCoroutinesCore = "1.10.2"
+activityCompose = "1.11.0"
+composeBom = "2024.09.00"
+hilt = "2.57.2"
+gms = "4.4.3"
+ktlint = "13.1.0"
+crashlytics = "3.0.2"
+chucker = "4.0.0"
+loggingInterceptor = "4.11.0"
+mapsCompose = "2.11.1"
+material = "1.13.0"
+navigationCompose = "2.9.5"
+lifecycle = "2.9.4"
+playServicesLocation = "21.0.1"
+playServicesMaps = "18.1.0"
+retrofit = "2.9.0"
+room = "2.8.1"
+timber = "5.0.1"
+devtoolsKsp = "2.2.0-2.0.2"
+jetbrainsKotlinJvm = "2.2.0"
+
+#Modules
+yalistoUIkit = "6.4.0"
+yalistoNetwork = "6.3.0"
+yalistoBdui = "1.0.3"
+yalistoPlaces = "1.0.1"
+yalistoProducts = "6.2.4"
+yalistoHome = "6.3.8"
+yalistoRestaurants = "6.4.0"
+yalistoOrders = "6.2.5"
+
+#Tests
+mockitoCore = "5.20.0"
+mockk = "1.13.5"
+turbine = "1.0.0"
+mockitoInline = "5.2.0"
+mockitoKotlin = "6.0.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+kotlinxCoroutinesTest = "1.10.2"
+coreTesting = "2.2.0"
+
+[libraries]
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+zxing-core = { module = "com.google.zxing:core", version.ref = "zxing" }
+zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
+glide-compiler = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompiler" }
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
+
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-compiler = { module ="androidx.room:room-compiler",  version.ref = "room" }
+
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
+
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+
+chucker-library = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
+chucker-library-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
+
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockk = {module = "io.mockk:mockk", version.ref = "mockk"}
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+turbine = {module = "app.cash.turbine:turbine", version.ref = "turbine"}
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+
+
+yalisto-uikit = { module = "com.afoxplus.android:uikit", version.ref = "yalistoUIkit" }
+yalisto-network = { module = "com.afoxplus.android:network", version.ref = "yalistoNetwork" }
+yalisto-products = { module = "com.afoxplus.android:products", version.ref = "yalistoProducts" }
+yalisto-bdui = { module = "com.afoxplus.android:bdui", version.ref = "yalistoBdui" }
+yalisto-places = { module = "com.afoxplus.android:places", version.ref = "yalistoPlaces" }
+yalisto-home = { module = "com.afoxplus.android:home", version.ref = "yalistoHome" }
+yalisto-restaurants = { module = "com.afoxplus.android:restaurants", version.ref = "yalistoRestaurants" }
+yalisto-orders = { module = "com.afoxplus.android:orders", version.ref = "yalistoOrders" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-plugin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+gms-google-services = { id = "com.google.gms.google-services", version.ref = "gms" }
+jlleitschuh-gradle-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+androidx-room = { id = "androidx.room", version.ref = "room" }
+
+[bundles]
+androidx-compose = [
+    "compose-ui",
+    "compose-ui-graphics",
+    "compose-material3",
+    "compose-activity",
+    "compose-constraintlayout",
+    "compose-navigation",
+    "compose-material-icons-extended",
+    "compose-coil",
+    "compose-ui-tooling-preview"
+]
+
+unit-test = [
+    "junit",
+    "mockk",
+    "kotlinx-coroutines-test",
+    "turbine",
+
+    "mockito-kotlin",
+    "mockito-inline",
+    "mockito-core"
+]
