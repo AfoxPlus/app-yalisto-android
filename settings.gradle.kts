@@ -72,3 +72,7 @@ include("bdui")
 project(":bdui").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-bdui/module")
 
+include("navigation")
+project(":navigation").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-navigation/module")
+
