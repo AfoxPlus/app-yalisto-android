@@ -22,9 +22,10 @@
             android:exported="true"
             android:theme="@style/UIKitCompose.Theme" />
         <activity
-            android:name=".delivery.splash.SplashActivity"
+            android:name=".delivery.main.MainActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/UIKitCompose.Theme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
