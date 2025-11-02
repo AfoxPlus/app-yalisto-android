@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.afoxplus.navigation.dispatcher.NavigatorDispatcher
 import com.afoxplus.navigation.graph.ApplicationNavGraph
 import com.afoxplus.navigation.handler.NavigationHandler
 import com.afoxplus.uikit.designsystem.foundations.UIKitTheme
@@ -19,13 +20,19 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var navigationHandler: NavigationHandler
 
+    @Inject
+    lateinit var navigatorDispatcher: NavigatorDispatcher
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             UIKitTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    ApplicationNavGraph(navigationHandler = navigationHandler)
+                    ApplicationNavGraph(
+                        navigationHandler = navigationHandler,
+                        navigatorDispatcher = navigatorDispatcher
+                    )
                 }
             }
         }
