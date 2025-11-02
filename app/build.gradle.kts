@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
     id("org.sonarqube") version "3.3"
     id("jacoco")
 }
@@ -147,6 +148,9 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.androidx.compose)
 
+    //KotlinSerialization
+    implementation(libs.kotlinx.serialization.json)
+
     //Image Async
     implementation(libs.glide)
     ksp(libs.glide.compiler)
@@ -208,6 +212,7 @@ dependencies {
     implementation(libs.yalisto.home)
     implementation(libs.yalisto.places)
     implementation(libs.yalisto.bdui)
+    implementation(project(ModuleDependency.Core.NAVIGATION))
 
     //Compose Debug
     debugImplementation(libs.compose.ui.tooling)
