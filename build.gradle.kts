@@ -21,6 +21,8 @@ allprojects {
                     .using(project(ModuleDependency.Core.DESIGN_SYSTEM))
                 substitute(module(catalog.findLibrary("yalisto.network").get().get().toString()))
                     .using(project(ModuleDependency.Integration.NETWORK))
+                substitute(module(catalog.findLibrary("yalisto.commons").get().get().toString()))
+                    .using(project(ModuleDependency.Core.COMMONS))
                 substitute(module(catalog.findLibrary("yalisto.products").get().get().toString()))
                     .using(project(ModuleDependency.Feature.PRODUCTS))
                 substitute(module(catalog.findLibrary("yalisto.restaurants").get().get().toString()))

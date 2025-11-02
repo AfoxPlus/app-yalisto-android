@@ -7,6 +7,7 @@ object ModuleDependency {
     object Core {
         const val DESIGN_SYSTEM = ":uikit"
         const val NAVIGATION = ":navigation"
+        const val COMMONS = ":commons"
     }
     object Feature {
         const val PRODUCTS = ":products"

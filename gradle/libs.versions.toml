@@ -46,6 +46,7 @@ yalistoProducts = "6.2.4"
 yalistoHome = "6.3.8"
 yalistoRestaurants = "6.4.0"
 yalistoOrders = "6.2.5"
+yalistoCommons = "1.0.0"
 
 #Tests
 mockitoCore = "5.20.0"
@@ -146,6 +147,7 @@ yalisto-places = { module = "com.afoxplus.android:places", version.ref = "yalist
 yalisto-home = { module = "com.afoxplus.android:home", version.ref = "yalistoHome" }
 yalisto-restaurants = { module = "com.afoxplus.android:restaurants", version.ref = "yalistoRestaurants" }
 yalisto-orders = { module = "com.afoxplus.android:orders", version.ref = "yalistoOrders" }
+yalisto-commons = { module = "com.afoxplus.android:commons", version.ref = "yalistoCommons" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

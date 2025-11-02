@@ -76,3 +76,6 @@ include("navigation")
 project(":navigation").projectDir =
     File("${settings.rootProject.projectDir.parent}/app-android-navigation/module")
 
+include("commons")
+project(":commons").projectDir =
+    File("${settings.rootProject.projectDir.parent}/app-android-commons/module")

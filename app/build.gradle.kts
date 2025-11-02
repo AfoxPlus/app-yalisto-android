@@ -212,6 +212,7 @@ dependencies {
     implementation(libs.yalisto.home)
     implementation(libs.yalisto.places)
     implementation(libs.yalisto.bdui)
+    implementation(libs.yalisto.commons)
     implementation(project(ModuleDependency.Core.NAVIGATION))
 
     //Compose Debug
